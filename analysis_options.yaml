@@ -4,7 +4,7 @@ analyzer:
   exclude:
     - lib/**.g.dart
     - lib/**.freezed.dart
-    - lib/global/infrastructure/injection.config.dart
+    - lib/src/global/injection.config.dart
     - lib/generated_plugin_registrant.dart
   plugins: 
     - dart_code_metrics

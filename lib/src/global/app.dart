@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../design_system/theme/ds_dark_theme.dart';
 import '../../design_system/theme/ds_light_theme.dart';
 import '../../design_system/theme/ds_model_theme.dart';
-import '../features/home/home_page.dart';
+import 'presentation/home_page.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
