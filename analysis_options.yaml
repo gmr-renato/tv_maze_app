@@ -65,7 +65,6 @@ dart_code_metrics:
     - weight-of-class: 0.33
 
   rules: 
-    - arguments-ordering
     - avoid-cascade-after-if-null
     - avoid-unnecessary-conditionals
     - avoid-unnecessary-type-assertions
