@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'design_system/theme/utils/ds_theme_switcher_button.dart';
+import '../../../design_system/theme/utils/ds_theme_switcher_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
