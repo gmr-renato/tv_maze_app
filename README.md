@@ -1,16 +1,69 @@
-# tv_maze_app
+# TV Maze app
 
-A new Flutter project.
+Application for listing TV series, using the API provided by the TVMaze
+website
 
-## Getting Started
+## APP FEATURES
 
-This project is a starting point for a Flutter application.
+- List all series using paging scheme
+- Search series by name
+  - Show name and poster image
 
-A few resources to get you started if this is your first Flutter project:
+- Series details page:
+  - Name
+  - Poster
+  - Days and time during which the series airs
+  - Genres
+  - Summary
+  - Lis of episodes separed by season
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Episode details page:
+  - Name
+  - Number
+  - Season
+  - Summary
+  - Image (can be null)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Pin number to secure application
+- Fingerprint, faceID or touchID
+- Save series as favorites list
+- Delete a series from the favorites
+- Browse their favorites series in alphabetical order
+- Search their favorites series by name
+- People search by listing name and image of the person
+
+- Person page:
+  - Name
+  - Image
+  - Series participated, with a link to the series details
+
+## APP BONUS FEATURES
+
+- User profile
+- Onboarding
+- Settings
+  - Language
+  - Theme (dark and light)
+
+## CODE BONUS
+
+- Unit test
+- Golden test
+
+## CRITERIAS
+
+- Focus on UI/UX
+- Clean Code/SOLID/Clean Arch
+- Focus on the original scope first
+- Unit test and golden test is a plus
+- Extra features is a plus
+
+## DELIVERABLES
+
+- Generate the application
+- Put it on distribution folder
+- Share the repository linl
+- Indicate bonus tasks completed
+- Create README.md with instructions to run and debug the code
+
+
