@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'design_system/theme/utils/ds_theme_switcher_button.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
 
@@ -23,6 +25,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: const [
+          DSThemeSwitcherButton(),
+        ],
       ),
       body: Center(
         child: Column(

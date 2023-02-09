@@ -103,7 +103,6 @@ dart_code_metrics:
           - lib/**
           - bin/**
     - member-ordering:
-        alphabetize: true
         order:
           - constructors
           - private-fields
