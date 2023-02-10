@@ -8,6 +8,8 @@ class Serie implements ShortSerie {
     required this.uid,
     required this.name,
     required this.imageUrl,
+    required this.language,
+    required this.averageRating,
     required this.scheduleDays,
     required this.scheduleTime,
     required this.genres,
@@ -23,6 +25,10 @@ class Serie implements ShortSerie {
       uid: map['id'] as int,
       name: map['name'] as String,
       imageUrl: map['image']['original'] as String,
+      language: map['language'] != null ? map['language'] as String : null,
+      averageRating: map['rating']['average'] != null
+          ? num.tryParse(map['rating']['average'].toString())!.toDouble()
+          : null,
       scheduleDays: map['schedule']['days'] as List<dynamic>,
       scheduleTime: map['schedule']['time'] as String,
       genres: map['genres'] as List<dynamic>,
@@ -37,6 +43,10 @@ class Serie implements ShortSerie {
   final String name;
   @override
   final String imageUrl;
+  @override
+  final String? language;
+  @override
+  final double? averageRating;
   final List<dynamic> scheduleDays;
   final String scheduleTime;
   final List<dynamic> genres;

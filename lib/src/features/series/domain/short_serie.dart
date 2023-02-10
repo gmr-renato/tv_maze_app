@@ -9,6 +9,8 @@ class ShortSerie {
     required this.uid,
     this.name,
     this.imageUrl,
+    this.language,
+    this.averageRating,
   });
 
   factory ShortSerie.fromJson(Map<String, dynamic> map) {
@@ -18,12 +20,18 @@ class ShortSerie {
       imageUrl: map['image']['original'] != null
           ? map['image']['original'] as String
           : null,
+      language: map['language'] != null ? map['language'] as String : null,
+      averageRating: map['rating']['average'] != null
+          ? num.tryParse(map['rating']['average'].toString())!.toDouble()
+          : null,
     );
   }
 
   final int uid;
   final String? name;
   final String? imageUrl;
+  final String? language;
+  final double? averageRating;
 }
 
 class ShortSeriesList {
