@@ -2,26 +2,26 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../design_system/atoms/box_spacer/ds_box_spacer.dart';
-import '../../../design_system/theme/ds_properties.dart';
-import '../../../design_system/theme/ds_sizes.dart';
-import '../../../design_system/theme/ds_spacing.dart';
-import '../../../design_system/theme/utils/ds_theme_switcher_button.dart';
-import '../../features/series/application/list_series_controller.dart';
+import '../../../../design_system/atoms/box_spacer/ds_box_spacer.dart';
+import '../../../../design_system/theme/ds_properties.dart';
+import '../../../../design_system/theme/ds_sizes.dart';
+import '../../../../design_system/theme/ds_spacing.dart';
+import '../../../../design_system/theme/utils/ds_theme_switcher_button.dart';
+import '../application/all_series_controller.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class AllSeriespage extends StatelessWidget {
+  const AllSeriespage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home page'),
+        title: const Text('All Series Page'),
         actions: const [
           DSThemeSwitcherButton(),
         ],
       ),
-      body: GetBuilder<ListSeriesController>(
+      body: GetBuilder<AllSeriesController>(
         builder: (controller) => Obx(
           () {
             final status = controller.readAllStatus.value;

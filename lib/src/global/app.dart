@@ -25,7 +25,7 @@ class App extends StatelessWidget {
           child,
         ) {
           return GetMaterialApp(
-            initialRoute: AppRoutes.home,
+            initialRoute: AppRoutes.allSeries,
             title: 'Flutter Demo',
             theme: dsLightTheme,
             darkTheme: dsDarkTheme,

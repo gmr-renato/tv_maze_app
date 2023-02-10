@@ -5,8 +5,8 @@ import '../domain/episode.dart';
 import '../domain/i_series_repository.dart';
 import '../domain/serie.dart';
 
-class ReadSerieController extends GetxController {
-  ReadSerieController(
+class SerieDetailsController extends GetxController {
+  SerieDetailsController(
     this.seriesRepository,
     this.serieUid,
   );
@@ -21,7 +21,7 @@ class ReadSerieController extends GetxController {
   Future<void> getSerie() async {
     fetchStatus.value = RxStatus.loading();
 
-    final data = await seriesRepository.fetchSerieDetails(serieUid);
+    final data = await seriesRepository.fetchDetails(serieUid);
 
     data.fold(
       (l) {

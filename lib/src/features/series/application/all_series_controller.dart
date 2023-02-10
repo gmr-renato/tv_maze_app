@@ -4,8 +4,8 @@ import '../../../global/domain/x_failure.dart';
 import '../domain/i_series_repository.dart';
 import '../domain/short_serie.dart';
 
-class ListSeriesController extends GetxController {
-  ListSeriesController(this.seriesRepository);
+class AllSeriesController extends GetxController {
+  AllSeriesController(this.seriesRepository);
 
   final ISeriesRepository seriesRepository;
 
@@ -23,7 +23,7 @@ class ListSeriesController extends GetxController {
   Future<void> readAllSeries(int page) async {
     readAllStatus.value = RxStatus.loading();
 
-    final result = await seriesRepository.fetchAllSeries(page);
+    final result = await seriesRepository.fetchAll(page);
 
     result.fold(
       (l) {
@@ -47,7 +47,7 @@ class ListSeriesController extends GetxController {
   Future<void> search(String term) async {
     readAllStatus.value = RxStatus.loading();
 
-    final data = await seriesRepository.search(term);
+    final data = await seriesRepository.searchByName(term);
 
     data.fold(
       (l) {

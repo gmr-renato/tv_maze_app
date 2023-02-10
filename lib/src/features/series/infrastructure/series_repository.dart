@@ -12,7 +12,7 @@ import '../domain/short_serie.dart';
 class SeriesRepository implements ISeriesRepository {
   final Dio dio = Dio();
   @override
-  Future<Either<XFailure, ShortSeriesList>> fetchAllSeries(int page) async {
+  Future<Either<XFailure, ShortSeriesList>> fetchAll(int page) async {
     ShortSeriesList? series;
     try {
       final response = await dio.get(
@@ -37,7 +37,9 @@ class SeriesRepository implements ISeriesRepository {
   }
 
   @override
-  Future<Either<XFailure, ShortSearchSeriesList>> search(String term) async {
+  Future<Either<XFailure, ShortSearchSeriesList>> searchByName(
+    String term,
+  ) async {
     ShortSearchSeriesList? series;
     try {
       final response = await dio.get(
@@ -59,7 +61,7 @@ class SeriesRepository implements ISeriesRepository {
   }
 
   @override
-  Future<Either<XFailure, Serie>> fetchSerieDetails(int uid) async {
+  Future<Either<XFailure, Serie>> fetchDetails(int uid) async {
     try {
       final Response<dynamic> response = await dio.get(
         '${Constants.baseApiUrl}${Constants.showsEndPoint}/$uid',
