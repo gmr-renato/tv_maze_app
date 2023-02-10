@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 
+import '../../../../design_system/atoms/box_spacer/ds_box_spacer.dart';
 import '../../../../design_system/theme/ds_sizes.dart';
 import '../../../../design_system/theme/ds_spacing.dart';
 import '../../../global/presentation/loading_with_message.dart';
@@ -84,6 +85,15 @@ class SerieDetailsPage extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
+                              // TODO:
+                              ElevatedButton.icon(
+                                // TODO: Method to add show to favorite
+                                onPressed: () {},
+                                icon:
+                                    const Icon(Icons.favorite_outline_rounded),
+                                label: const Text('Add to favorits'),
+                              ),
+                              const DSBoxSpacer.small(),
                               Text(
                                 controller.serie.value!.name,
                                 style: Theme.of(context).textTheme.headline6,
