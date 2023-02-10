@@ -1,13 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../design_system/atoms/box_spacer/ds_box_spacer.dart';
-import '../../../../design_system/theme/ds_properties.dart';
-import '../../../../design_system/theme/ds_sizes.dart';
-import '../../../../design_system/theme/ds_spacing.dart';
 import '../../../../design_system/theme/utils/ds_theme_switcher_button.dart';
 import '../application/all_series_controller.dart';
+import 'widgets/all_series_list.dart';
 
 class AllSeriespage extends StatelessWidget {
   const AllSeriespage({super.key});
@@ -22,81 +19,40 @@ class AllSeriespage extends StatelessWidget {
         ],
       ),
       body: GetBuilder<AllSeriesController>(
-        builder: (controller) => Obx(
-          () {
-            final status = controller.readAllStatus.value;
-            if (status.isEmpty) {
-              return const Text('Empty');
-            } else if (status.isError) {
-              return const Text('Error');
-            } else if (status.isLoading) {
-              return const Text('Loading');
-            } else if (status.isSuccess) {
-              final series = controller.allSeriesFromRepository.value!.series;
-
-              return ListView.separated(
-                cacheExtent: 30,
-                itemCount: series.length,
-                itemBuilder: (context, index) {
-                  final currentSerie = series[index];
-
-                  return Material(
-                    child: InkWell(
-                      child: Padding(
-                        padding: const EdgeInsets.all(DSSpacing.medium),
-                        child: Row(
-                          children: [
-                            ClipRRect(
-                              borderRadius: const BorderRadius.all(
-                                DSProperties.radiusMedium,
-                              ),
-                              child: CachedNetworkImage(
-                                height: DSSizes.showThumbnailPosterSize,
-                                width: DSSizes.showThumbnailPosterSize,
-                                imageUrl: currentSerie.imageUrl!,
-                                fit: BoxFit.cover,
-                                progressIndicatorBuilder: (
-                                  context,
-                                  url,
-                                  progress,
-                                ) =>
-                                    Material(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .secondaryContainer,
-                                  child: const CircularProgressIndicator
-                                      .adaptive(),
-                                ),
-                              ),
-                            ),
-                            const DSBoxSpacer(),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(currentSerie.name!),
-                                const DSBoxSpacer.small(),
-                                Text(currentSerie.language!),
-                                const DSBoxSpacer.small(),
-                                Text(
-                                  currentSerie.averageRating?.toString() ??
-                                      'No rating',
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-                separatorBuilder: (context, index) {
-                  return const DSBoxSpacer.xxSmall();
-                },
-              );
-            } else {
-              return const Text('Not know');
-            }
-          },
+        builder: (controller) => controller.obx(
+          (state) => AllSeriesList(
+            series: controller.allSeriesFromRepository.value!.series,
+          ),
+          onError: (error) => Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                Icon(Icons.report_problem_rounded),
+                DSBoxSpacer(),
+                Text('We had a problem, try again'),
+              ],
+            ),
+          ),
+          onEmpty: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                Icon(Icons.radio_button_unchecked_rounded),
+                DSBoxSpacer(),
+                Text('Sorry, nothing found'),
+              ],
+            ),
+          ),
+          onLoading: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                Text('Loading all series'),
+                DSBoxSpacer(),
+                CircularProgressIndicator.adaptive(),
+              ],
+            ),
+          ),
         ),
       ),
     );

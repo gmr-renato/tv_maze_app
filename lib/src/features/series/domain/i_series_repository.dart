@@ -7,7 +7,7 @@ import 'short_serie.dart';
 
 abstract class ISeriesRepository {
   Future<Either<XFailure, ShortSeriesList>> fetchAll(int page);
-  Future<Either<XFailure, ShortSearchSeriesList>> searchByName(String term);
+  Future<Either<XFailure, ShortSeriesList>> searchByName(String term);
   Future<Either<XFailure, Serie>> fetchDetails(int uid);
   Future<Either<XFailure, Episode>> fetchEpisodeDetails(int uid);
 }
