@@ -7,21 +7,23 @@ import '../domain/short_serie.dart';
 class AllSeriesController extends GetxController with StateMixin {
   AllSeriesController(this.seriesRepository);
 
+  int _currentPage = 0;
+
   final ISeriesRepository seriesRepository;
 
   final allSeriesFromRepository = Rxn<ShortSeriesList>();
-  final searchSeriesResult = Rxn<ShortSeriesList>();
+  final fetchMoreStatus = Rx<RxStatus>(RxStatus.empty());
 
   @override
   void onInit() {
     super.onInit();
-    readAllSeries(1);
+    _initialFetch();
   }
 
-  Future<void> readAllSeries(int page) async {
+  Future<void> _initialFetch() async {
     change(null, status: RxStatus.loading());
 
-    final result = await seriesRepository.fetchAll(page);
+    final result = await seriesRepository.fetchAll(_currentPage);
 
     result.fold(
       (l) {
@@ -40,5 +42,35 @@ class AllSeriesController extends GetxController with StateMixin {
         change(null, status: RxStatus.success());
       },
     );
+    change(null, status: RxStatus.error());
+  }
+
+  void tryInitialFetchAgain() => _initialFetch();
+
+  Future<void> fetchMore() async {
+    if (allSeriesFromRepository.value == null) {
+      fetchMoreStatus.value = RxStatus.error('Cannot fetch more');
+    } else {
+      fetchMoreStatus.value = RxStatus.loading();
+
+      final int newPage = _currentPage + 1;
+
+      final result = await seriesRepository.fetchAll(newPage);
+
+      result.fold(
+        (l) {
+          if (l == const XFailure.serverError()) {
+            fetchMoreStatus.value = RxStatus.error();
+          } else {
+            fetchMoreStatus.value = RxStatus.empty();
+          }
+        },
+        (r) {
+          allSeriesFromRepository.value!.series.addAll(r.series);
+          _currentPage = newPage;
+          fetchMoreStatus.value = RxStatus.success();
+        },
+      );
+    }
   }
 }
