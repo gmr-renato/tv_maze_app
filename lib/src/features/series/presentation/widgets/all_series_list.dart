@@ -14,13 +14,16 @@ class AllSeriesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      cacheExtent: 30,
-      itemCount: series.length,
-      itemBuilder: (context, index) => SerieMainInfo(serie: series[index]),
-      separatorBuilder: (context, index) {
-        return const DSBoxSpacer.xxSmall();
-      },
+    return Scrollbar(
+      thumbVisibility: true,
+      child: ListView.separated(
+        cacheExtent: 30,
+        itemCount: series.length,
+        itemBuilder: (context, index) => SerieMainInfo(serie: series[index]),
+        separatorBuilder: (context, index) {
+          return const DSBoxSpacer.xxSmall();
+        },
+      ),
     );
   }
 }

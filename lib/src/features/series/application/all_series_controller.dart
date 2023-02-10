@@ -7,23 +7,23 @@ import '../domain/short_serie.dart';
 class AllSeriesController extends GetxController with StateMixin {
   AllSeriesController(this.seriesRepository);
 
-  int _currentPage = 0;
-
   final ISeriesRepository seriesRepository;
 
-  final allSeriesFromRepository = Rxn<ShortSeriesList>();
+  final seriesByPage = Rx<Map<int, ShortSeriesList>>({});
   final fetchMoreStatus = Rx<RxStatus>(RxStatus.empty());
+
+  final RxInt currentPage = RxInt(0);
 
   @override
   void onInit() {
     super.onInit();
-    _initialFetch();
+    fetchByPage(0);
   }
 
-  Future<void> _initialFetch() async {
+  Future<void> fetchByPage(int page) async {
     change(null, status: RxStatus.loading());
 
-    final result = await seriesRepository.fetchAll(_currentPage);
+    final result = await seriesRepository.fetchByPage(page);
 
     result.fold(
       (l) {
@@ -34,43 +34,19 @@ class AllSeriesController extends GetxController with StateMixin {
         }
       },
       (r) {
-        if (allSeriesFromRepository.value != null) {
-          allSeriesFromRepository.value!.series.addAll(r.series);
-        } else {
-          allSeriesFromRepository.value = r;
-        }
+        seriesByPage.value.addAll({page: r});
+
         change(null, status: RxStatus.success());
       },
     );
-    change(null, status: RxStatus.error());
   }
 
-  void tryInitialFetchAgain() => _initialFetch();
-
-  Future<void> fetchMore() async {
-    if (allSeriesFromRepository.value == null) {
-      fetchMoreStatus.value = RxStatus.error('Cannot fetch more');
+  Future<void> onPageChanged(int newPage) async {
+    currentPage.value = newPage;
+    if (seriesByPage.value[newPage] == null) {
+      await fetchByPage(newPage);
     } else {
-      fetchMoreStatus.value = RxStatus.loading();
-
-      final int newPage = _currentPage + 1;
-
-      final result = await seriesRepository.fetchAll(newPage);
-
-      result.fold(
-        (l) {
-          if (l == const XFailure.serverError()) {
-            fetchMoreStatus.value = RxStatus.error();
-          } else {
-            fetchMoreStatus.value = RxStatus.empty();
-          }
-        },
-        (r) {
-          allSeriesFromRepository.value!.series.addAll(r.series);
-          _currentPage = newPage;
-          fetchMoreStatus.value = RxStatus.success();
-        },
-      );
+      change(null, status: RxStatus.success());
     }
   }
 }

@@ -10,4 +10,6 @@ class DSProperties {
   static const Radius radiusSmall = Radius.circular(4);
   static const Radius radiusMedium = Radius.circular(8);
   static const Radius radiusLarge = Radius.circular(16);
+  static const Radius radiusXLarge = Radius.circular(24);
+  static const Radius radiusXXLarge = Radius.circular(32);
 }

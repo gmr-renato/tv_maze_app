@@ -17,7 +17,7 @@ class ShortSerie {
     return ShortSerie(
       uid: map['id'] as int,
       name: map['name'] != null ? map['name'] as String : null,
-      imageUrl: map['image']['original'] != null
+      imageUrl: map['image']?['original'] != null
           ? map['image']['original'] as String
           : null,
       language: map['language'] != null ? map['language'] as String : null,
