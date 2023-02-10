@@ -37,6 +37,7 @@ linter:
     prefer_single_quotes: true
     sort_pub_dependencies: false
     prefer_if_elements_to_conditional_expressions: false
+    avoid_classes_with_only_static_members: false
 
 dart_code_metrics:
   anti-patterns:

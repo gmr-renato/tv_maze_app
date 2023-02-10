@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import '../../design_system/theme/ds_dark_theme.dart';
 import '../../design_system/theme/ds_light_theme.dart';
 import '../../design_system/theme/ds_model_theme.dart';
-import 'presentation/home_page.dart';
+import 'app_pages.dart';
+import 'app_routes.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -22,12 +24,13 @@ class App extends StatelessWidget {
           DSModelTheme themeNotifier,
           child,
         ) {
-          return MaterialApp(
-            home: const HomePage(title: 'Flutter Demo Home Page'),
+          return GetMaterialApp(
+            initialRoute: AppRoutes.home,
             title: 'Flutter Demo',
             theme: dsLightTheme,
             darkTheme: dsDarkTheme,
             themeMode: themeNotifier.isDark ? ThemeMode.dark : ThemeMode.light,
+            getPages: AppPages.pages,
           );
         },
       ),

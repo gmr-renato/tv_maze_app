@@ -9,22 +9,28 @@ class ListSeriesController extends GetxController {
 
   final ISeriesRepository seriesRepository;
 
-  final fetchAllStatus = Rx(RxStatus.empty());
+  final readAllStatus = Rx(RxStatus.empty());
 
   final allSeriesFromRepository = Rxn<ShortSeriesList>();
   final searchSeriesResult = Rxn<ShortSearchSeriesList>();
 
+  @override
+  void onInit() {
+    super.onInit();
+    readAllSeries(1);
+  }
+
   Future<void> readAllSeries(int page) async {
-    fetchAllStatus.value = RxStatus.loading();
+    readAllStatus.value = RxStatus.loading();
 
-    final data = await seriesRepository.fetchAllSeries(page);
+    final result = await seriesRepository.fetchAllSeries(page);
 
-    data.fold(
+    result.fold(
       (l) {
         if (l == const XFailure.serverError()) {
-          fetchAllStatus.value = RxStatus.error();
+          readAllStatus.value = RxStatus.error();
         } else {
-          fetchAllStatus.value = RxStatus.empty();
+          readAllStatus.value = RxStatus.empty();
         }
       },
       (r) {
@@ -33,27 +39,27 @@ class ListSeriesController extends GetxController {
         } else {
           allSeriesFromRepository.value = r;
         }
-        fetchAllStatus.value = RxStatus.success();
+        readAllStatus.value = RxStatus.success();
       },
     );
   }
 
   Future<void> search(String term) async {
-    fetchAllStatus.value = RxStatus.loading();
+    readAllStatus.value = RxStatus.loading();
 
     final data = await seriesRepository.search(term);
 
     data.fold(
       (l) {
         if (l == const XFailure.serverError()) {
-          fetchAllStatus.value = RxStatus.error();
+          readAllStatus.value = RxStatus.error();
         } else {
-          fetchAllStatus.value = RxStatus.empty();
+          readAllStatus.value = RxStatus.empty();
         }
       },
       (r) {
         searchSeriesResult.value = r;
-        fetchAllStatus.value = RxStatus.success();
+        readAllStatus.value = RxStatus.success();
       },
     );
   }
