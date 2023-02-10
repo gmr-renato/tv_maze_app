@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../../design_system/atoms/box_spacer/ds_box_spacer.dart';
 import '../../../../../design_system/theme/ds_properties.dart';
 import '../../../../../design_system/theme/ds_sizes.dart';
 import '../../../../../design_system/theme/ds_spacing.dart';
+import '../../../../global/app_routes.dart';
 import '../../domain/short_serie.dart';
 
 class SerieMainInfo extends StatelessWidget {
@@ -19,6 +21,9 @@ class SerieMainInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: InkWell(
+        onTap: () => Get.toNamed(
+          '${AppRoutes.serieDetails}${serie.uid.toStringAsFixed(0)}',
+        ),
         child: Padding(
           padding: const EdgeInsets.all(DSSpacing.medium),
           child: Row(
