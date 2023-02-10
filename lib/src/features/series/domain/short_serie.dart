@@ -1,0 +1,64 @@
+// Attention: This entity was purposely created as anemic, without the implementation of validations
+// according to the Domain Driven Design. It should only be used as a simple representation of data,
+// without any guarantee of their integrity.
+
+// ignore_for_file: avoid_dynamic_calls
+
+class ShortSerie {
+  ShortSerie({
+    required this.uid,
+    this.name,
+    this.imageUrl,
+  });
+
+  factory ShortSerie.fromJson(Map<String, dynamic> map) {
+    return ShortSerie(
+      uid: map['id'] as int,
+      name: map['name'] != null ? map['name'] as String : null,
+      imageUrl: map['image']['original'] != null
+          ? map['image']['original'] as String
+          : null,
+    );
+  }
+
+  final int uid;
+  final String? name;
+  final String? imageUrl;
+}
+
+class ShortSeriesList {
+  ShortSeriesList(this.series);
+
+  factory ShortSeriesList.fromJson(List<dynamic> json) {
+    final List<ShortSerie> list = [];
+
+    json.forEach((element) {
+      list.add(ShortSerie.fromJson(element as Map<String, dynamic>));
+    });
+
+    return ShortSeriesList(list);
+  }
+
+  final List<ShortSerie> series;
+}
+
+class ShortSearchSeriesList {
+  ShortSearchSeriesList(this.series);
+
+  factory ShortSearchSeriesList.fromJson(List<dynamic> json) {
+    final List<ShortSerie> list = [];
+
+    for (final show in json) {
+      final searchedElement = show as Map<String, dynamic>;
+      list.add(
+        ShortSerie.fromJson(
+          searchedElement['show'] as Map<String, dynamic>,
+        ),
+      );
+    }
+
+    return ShortSearchSeriesList(list);
+  }
+
+  final List<ShortSerie> series;
+}
