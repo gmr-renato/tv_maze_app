@@ -23,18 +23,14 @@ class SearchByNameController extends GetxController with StateMixin {
     final data = await seriesRepository.searchByName(term);
 
     data.fold(
-      (l) {
-        if (l == const XFailure.serverError()) {
-          change(null, status: RxStatus.error());
-        } else {
-          change(null, status: RxStatus.empty());
-        }
-      },
+      (l) => change(null, status: RxStatus.error()),
       (r) {
         searchSeriesResult.value = r;
         change(null, status: RxStatus.success());
       },
     );
+
+    // TODO: improve handle for empty return scenario
 
     if (term == '' ||
         searchSeriesResult.value == null ||
