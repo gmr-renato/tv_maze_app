@@ -26,7 +26,7 @@ class SerieDetailsPage extends StatelessWidget {
                   children: [
                     CachedNetworkImage(
                       width: MediaQuery.of(context).size.width,
-                      imageUrl: controller.serie.value!.imageUrl,
+                      imageUrl: controller.loadedSerie.value!.imageUrl,
                       fit: BoxFit.cover,
                       progressIndicatorBuilder: (
                         context,
@@ -95,7 +95,7 @@ class SerieDetailsPage extends StatelessWidget {
                               ),
                               const DSBoxSpacer.small(),
                               Text(
-                                controller.serie.value!.name,
+                                controller.loadedSerie.value!.name,
                                 style: Theme.of(context).textTheme.headline6,
                               ),
                             ],
@@ -116,24 +116,24 @@ class SerieDetailsPage extends StatelessWidget {
                         children: [
                           const Text('The Plot'),
                           Html(
-                            data: controller.serie.value!.summary,
+                            data: controller.loadedSerie.value!.summary,
                           ),
                         ],
                       ),
                       Text(
-                        controller.serie.value!.language ?? 'Blank',
+                        controller.loadedSerie.value!.language ?? 'Blank',
                       ),
                       Text(
-                        controller.serie.value!.averageRating.toString(),
+                        controller.loadedSerie.value!.averageRating.toString(),
                       ),
                       Text(
-                        controller.serie.value!.scheduleDays.toString(),
+                        controller.loadedSerie.value!.scheduleDays.toString(),
                       ),
                       Text(
-                        controller.serie.value!.scheduleTime,
+                        controller.loadedSerie.value!.scheduleTime,
                       ),
                       Text(
-                        controller.serie.value!.shortEpisodeList.length
+                        controller.loadedSerie.value!.shortEpisodeList.length
                             .toString(),
                       ),
                     ],

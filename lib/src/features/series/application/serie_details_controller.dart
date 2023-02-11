@@ -4,26 +4,34 @@ import '../../../global/domain/x_failure.dart';
 import '../domain/episode.dart';
 import '../domain/i_series_repository.dart';
 import '../domain/serie.dart';
+import '../domain/short_serie.dart';
 
 class SerieDetailsController extends GetxController with StateMixin {
   SerieDetailsController(
-    this.seriesRepository,
-  );
+    this.seriesRepository, {
+    this.serie,
+  });
   int? _serieUid;
+
+  ShortSerie? serie;
 
   final ISeriesRepository seriesRepository;
 
-  final serie = Rxn<Serie>();
+  final loadedSerie = Rxn<Serie>();
   final episode = Rxn<Episode>();
 
   @override
   void onReady() {
     super.onReady();
+
     _serieUid = int.tryParse(Get.parameters['uid'] ?? '');
-    if (_serieUid != null) {
+
+    if (serie != null) {
+      _getSerie(serie!.uid);
+    } else if (_serieUid != null) {
       _getSerie(_serieUid!);
     } else {
-      change(null, status: RxStatus.error("Couldn' get uid"));
+      change(null, status: RxStatus.error('Could not get serie uid'));
     }
   }
 
@@ -41,7 +49,7 @@ class SerieDetailsController extends GetxController with StateMixin {
         }
       },
       (r) {
-        serie.value = r;
+        loadedSerie.value = r;
         change(null, status: RxStatus.success());
       },
     );
