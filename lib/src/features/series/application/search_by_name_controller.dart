@@ -9,25 +9,37 @@ class SearchByNameController extends GetxController with StateMixin {
 
   final ISeriesRepository seriesRepository;
 
-  final searchSeriesResult = Rxn<ShortSeriesList>();
+  final searchSeriesResult = Rxn<ShortSearchSeriesList>();
+
+  @override
+  void onInit() {
+    super.onInit();
+    change(null, status: RxStatus.empty());
+  }
 
   Future<void> search(String term) async {
-    change(RxStatus.loading());
+    change(null, status: RxStatus.loading());
 
     final data = await seriesRepository.searchByName(term);
 
     data.fold(
       (l) {
         if (l == const XFailure.serverError()) {
-          change(RxStatus.error());
+          change(null, status: RxStatus.error());
         } else {
-          change(RxStatus.empty());
+          change(null, status: RxStatus.empty());
         }
       },
       (r) {
         searchSeriesResult.value = r;
-        change(RxStatus.success());
+        change(null, status: RxStatus.success());
       },
     );
+
+    if (term == '' ||
+        searchSeriesResult.value == null ||
+        searchSeriesResult.value!.series.isEmpty) {
+      change(null, status: RxStatus.empty());
+    }
   }
 }

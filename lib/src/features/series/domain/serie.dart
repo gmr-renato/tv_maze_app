@@ -38,6 +38,17 @@ class Serie implements ShortSerie {
   }
 
   @override
+  Map<String, dynamic> toMap(ShortSerie shortSerie) {
+    return <String, dynamic>{
+      'uid': shortSerie.uid,
+      'name': shortSerie.name,
+      'imageUrl': shortSerie.imageUrl,
+      'language': shortSerie.language,
+      'averageRating': shortSerie.averageRating,
+    };
+  }
+
+  @override
   final int uid;
   @override
   final String name;

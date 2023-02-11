@@ -39,6 +39,7 @@ class SerieMainInfo extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(DSSpacing.medium),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 height: DSSizes.showThumbnailPosterSize,
@@ -54,17 +55,23 @@ class SerieMainInfo extends StatelessWidget {
                 ),
               ),
               const DSBoxSpacer(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(serie.name!),
-                  const DSBoxSpacer.small(),
-                  Text(serie.language!),
-                  const DSBoxSpacer.small(),
-                  Text(
-                    serie.averageRating?.toString() ?? 'No rating',
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      serie.name!,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const DSBoxSpacer.small(),
+                    Text(serie.language!),
+                    const DSBoxSpacer.small(),
+                    Text(
+                      serie.averageRating?.toString() ?? 'No rating',
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

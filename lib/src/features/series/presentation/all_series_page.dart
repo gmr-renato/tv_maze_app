@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../../design_system/theme/ds_properties.dart';
 import '../../../../design_system/theme/ds_spacing.dart';
 import '../../../../design_system/theme/utils/ds_theme_switcher_button.dart';
+import '../../../global/app_routes.dart';
 import '../../../global/presentation/loading_with_message.dart';
 import '../../../global/presentation/message_and_retry.dart';
 import '../application/all_series_controller.dart';
@@ -17,8 +18,12 @@ class AllSeriespage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('All Series'),
-        actions: const [
-          DSThemeSwitcherButton(),
+        actions: [
+          IconButton(
+            onPressed: () => Get.toNamed(AppRoutes.searchSeries),
+            icon: const Icon(Icons.search),
+          ),
+          const DSThemeSwitcherButton(),
         ],
       ),
       body: GetBuilder<AllSeriesController>(

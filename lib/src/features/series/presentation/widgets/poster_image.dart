@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../design_system/theme/ds_spacing.dart';
+
 class PosterImage extends StatelessWidget {
   const PosterImage({
     super.key,
@@ -22,7 +24,10 @@ class PosterImage extends StatelessWidget {
       ) =>
           Material(
         color: Theme.of(context).colorScheme.secondaryContainer,
-        child: const CircularProgressIndicator.adaptive(),
+        child: const Padding(
+          padding: EdgeInsets.all(DSSpacing.medium),
+          child: CircularProgressIndicator.adaptive(),
+        ),
       ),
     );
   }

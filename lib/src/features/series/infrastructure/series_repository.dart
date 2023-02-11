@@ -37,17 +37,17 @@ class SeriesRepository implements ISeriesRepository {
   }
 
   @override
-  Future<Either<XFailure, ShortSeriesList>> searchByName(
+  Future<Either<XFailure, ShortSearchSeriesList>> searchByName(
     String term,
   ) async {
-    ShortSeriesList? series;
+    ShortSearchSeriesList? series;
     try {
       final response = await dio.get(
         '${Constants.baseApiUrl}${Constants.searchShowsEndPoint}$term',
       );
 
       if (response.data != null) {
-        series = ShortSeriesList.fromJson(
+        series = ShortSearchSeriesList.fromJson(
           response.data as List<dynamic>,
         );
       } else {

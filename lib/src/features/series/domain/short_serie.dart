@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 // Attention: This entity was purposely created as anemic, without the implementation of validations
 // according to the Domain Driven Design. It should only be used as a simple representation of data,
 // without any guarantee of their integrity.
@@ -27,6 +29,26 @@ class ShortSerie {
     );
   }
 
+  factory ShortSerie.fromMap(Map<String, dynamic> map) {
+    return ShortSerie(
+      uid: map['uid'] as int,
+      name: map['name'] != null ? map['name'] as String : null,
+      imageUrl: map['image'].toString(),
+      language: map['language'] != null ? map['language'] as String : null,
+      averageRating: num.tryParse(map['averageRating'].toString())!.toDouble(),
+    );
+  }
+
+  Map<String, dynamic> toMap(ShortSerie shortSerie) {
+    return <String, dynamic>{
+      'id': shortSerie.uid,
+      'name': shortSerie.name,
+      'image': shortSerie.imageUrl,
+      'language': shortSerie.language,
+      'averageRating': shortSerie.averageRating,
+    };
+  }
+
   final int uid;
   final String? name;
   final String? imageUrl;
@@ -45,6 +67,27 @@ class ShortSeriesList {
     });
 
     return ShortSeriesList(list);
+  }
+
+  final List<ShortSerie> series;
+}
+
+class ShortSearchSeriesList {
+  ShortSearchSeriesList(this.series);
+
+  factory ShortSearchSeriesList.fromJson(List<dynamic> json) {
+    final List<ShortSerie> list = [];
+
+    for (final show in json) {
+      final searchedElement = show as Map<String, dynamic>;
+      list.add(
+        ShortSerie.fromJson(
+          searchedElement['show'] as Map<String, dynamic>,
+        ),
+      );
+    }
+
+    return ShortSearchSeriesList(list);
   }
 
   final List<ShortSerie> series;
