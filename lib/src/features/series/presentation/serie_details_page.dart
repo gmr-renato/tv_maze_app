@@ -8,6 +8,7 @@ import '../../../../design_system/theme/ds_sizes.dart';
 import '../../../../design_system/theme/ds_spacing.dart';
 import '../../../global/presentation/loading_with_message.dart';
 import '../../../global/presentation/message_and_retry.dart';
+import '../../favorites/application/favorites_series_controller.dart';
 import '../application/serie_details_controller.dart';
 
 class SerieDetailsPage extends StatelessWidget {
@@ -15,6 +16,8 @@ class SerieDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final favoritesController = Get.find<FavoritesSeriesController>();
+
     return GetBuilder<SerieDetailsController>(
       builder: (controller) {
         return controller.obx(
@@ -88,7 +91,11 @@ class SerieDetailsPage extends StatelessWidget {
                               // TODO:
                               ElevatedButton.icon(
                                 // TODO: Method to add show to favorite
-                                onPressed: () {},
+                                onPressed: () {
+                                  favoritesController.addSerieToFavorite(
+                                    controller.serie!,
+                                  );
+                                },
                                 icon:
                                     const Icon(Icons.favorite_outline_rounded),
                                 label: const Text('Add to favorits'),

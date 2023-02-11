@@ -1,5 +1,6 @@
 class AppRoutes {
   static const allSeries = '/allSeries';
-  static const serieDetails = '/serieDetails/';
-  static const searchSeries = '/searchSeries';
+  static const searchSeries = '/series/search';
+  static const serieDetails = '/serie/';
+  static const favoritesSeries = '/favorites';
 }

@@ -9,6 +9,8 @@ import '../../../../design_system/theme/ds_spacing.dart';
 import '../../../global/presentation/global_presentation_constants.dart';
 import '../../../global/presentation/loading_with_message.dart';
 import '../../../global/presentation/message_and_retry.dart';
+import '../../favorites/application/favorites_series_controller.dart';
+import '../../favorites/infrastructure/favorites_series_service.dart';
 import '../application/serie_details_controller.dart';
 import '../domain/short_serie.dart';
 import '../infrastructure/series_repository.dart';
@@ -40,6 +42,11 @@ class _SerieDetailsPageAnimatedState extends State<SerieDetailsPageAnimated> {
         serie: widget.serie,
       ),
     );
+    Get.lazyPut(
+      () => FavoritesSeriesController(
+        FavoritesSeriesService(),
+      ),
+    );
     SchedulerBinding.instance.addPostFrameCallback(
       (_) => Future.delayed(GlobalPresentationConstants.pageTransitionDuration)
           .then(
@@ -50,6 +57,8 @@ class _SerieDetailsPageAnimatedState extends State<SerieDetailsPageAnimated> {
 
   @override
   Widget build(BuildContext context) {
+    final favoritesController = Get.find<FavoritesSeriesController>();
+
     return Scaffold(
       body: ListView(
         children: [
@@ -121,11 +130,18 @@ class _SerieDetailsPageAnimatedState extends State<SerieDetailsPageAnimated> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           // TODO:
-                          ElevatedButton.icon(
-                            // TODO: Method to add show to favorite
-                            onPressed: () {},
-                            icon: const Icon(Icons.favorite_outline_rounded),
-                            label: const Text('Add to favorits'),
+
+                          GetBuilder<SerieDetailsController>(
+                            builder: (controller) => ElevatedButton.icon(
+                              // TODO: Method to add show to favorite
+                              onPressed: () {
+                                favoritesController.addSerieToFavorite(
+                                  controller.serie!,
+                                );
+                              },
+                              icon: const Icon(Icons.favorite_outline_rounded),
+                              label: const Text('Add to favorits'),
+                            ),
                           ),
                           const DSBoxSpacer.small(),
                           Text(

@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 
-import '../../../global/domain/x_failure.dart';
 import '../domain/i_series_repository.dart';
 import '../domain/short_serie.dart';
 
@@ -30,7 +29,7 @@ class SearchByNameController extends GetxController with StateMixin {
       },
     );
 
-    // TODO: improve handle for empty return scenario
+    // TODO: improve handle  empty return scenario
 
     if (term == '' ||
         searchSeriesResult.value == null ||

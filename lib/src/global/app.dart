@@ -7,6 +7,7 @@ import '../../design_system/theme/ds_light_theme.dart';
 import '../../design_system/theme/ds_model_theme.dart';
 import 'app_pages.dart';
 import 'app_routes.dart';
+import 'application/initial_bindings.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -27,6 +28,7 @@ class App extends StatelessWidget {
           return GetMaterialApp(
             // initialRoute: '${AppRoutes.serieDetails}1',
             initialRoute: AppRoutes.allSeries,
+            initialBinding: InitialBindings(),
             title: 'Flutter Demo',
             theme: dsLightTheme,
             darkTheme: dsDarkTheme,

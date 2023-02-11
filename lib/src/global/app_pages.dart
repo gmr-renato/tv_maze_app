@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../features/favorites/application/favorites_series_binding.dart';
+import '../features/favorites/presentation/favorites_series_page.dart';
 import '../features/series/application/all_series_binding.dart';
 import '../features/series/application/search_by_name_binding.dart';
 import '../features/series/application/serie_details_binding.dart';
@@ -24,6 +26,11 @@ class AppPages {
       name: AppRoutes.searchSeries,
       page: () => const SearchSeriespage(),
       binding: SearchByNameBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.favoritesSeries,
+      page: () => FavoritesSeriesPage(),
+      binding: FavoritesSeriesBinding(),
     ),
   ];
 }

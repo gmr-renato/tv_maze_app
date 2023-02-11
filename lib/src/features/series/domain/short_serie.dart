@@ -41,7 +41,7 @@ class ShortSerie {
 
   Map<String, dynamic> toMap(ShortSerie shortSerie) {
     return <String, dynamic>{
-      'id': shortSerie.uid,
+      'uid': shortSerie.uid,
       'name': shortSerie.name,
       'image': shortSerie.imageUrl,
       'language': shortSerie.language,

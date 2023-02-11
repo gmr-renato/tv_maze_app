@@ -26,7 +26,7 @@ class SearchSeriespage extends StatelessWidget {
           title: TextField(
             inputFormatters: <TextInputFormatter>[
               FilteringTextInputFormatter.allow(
-                RegExp("[0-9a-zA-Z]"),
+                RegExp('[0-9a-zA-Z]'),
               ),
             ],
             controller: textController,
