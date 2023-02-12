@@ -1,29 +1,154 @@
-# This file configures the analyzer, which statically analyzes Dart code to
-# check for errors, warnings, and lints.
-#
-# The issues identified by the analyzer are surfaced in the UI of Dart-enabled
-# IDEs (https://dart.dev/tools#ides-and-editors). The analyzer can also be
-# invoked from the command line by running `flutter analyze`.
+include: package:lint/analysis_options.yaml
 
-# The following line activates a set of recommended lints for Flutter apps,
-# packages, and plugins designed to encourage good coding practices.
-include: package:flutter_lints/flutter.yaml
+analyzer:
+  exclude:
+    - lib/**.g.dart
+    - lib/**.freezed.dart
+    - lib/src/global/injection.config.dart
+    - lib/generated_plugin_registrant.dart
+  plugins: 
+    - dart_code_metrics
+
+  errors:
+    parameter_assignments: info
+    argument_type_not_assignable: info
+    missing_return: info
+    prefer_const_constructors: info
+    sized_box_for_whitespace: info
+    no_duplicate_case_values: info
+    fixme: ignore
+    hack: ignore
+    todo: ignore
 
 linter:
-  # The lint rules applied to this project can be customized in the
-  # section below to disable rules from the `package:flutter_lints/flutter.yaml`
-  # included above or to enable additional rules. A list of all available lints
-  # and their documentation is published at
-  # https://dart-lang.github.io/linter/lints/index.html.
-  #
-  # Instead of disabling a lint rule for the entire project in the
-  # section below, it can also be suppressed for a single line of code
-  # or a specific dart file by using the `// ignore: name_of_lint` and
-  # `// ignore_for_file: name_of_lint` syntax on the line or in the file
-  # producing the lint.
   rules:
-    # avoid_print: false  # Uncomment to disable the `avoid_print` rule
-    # prefer_single_quotes: true  # Uncomment to enable the `prefer_single_quotes` rule
+    always_use_package_imports: false
+    avoid_function_literals_in_foreach_calls: false
+    avoid_redundant_argument_values: true
+    avoid_print: true
+    avoid_relative_lib_imports: false
+    avoid_type_to_string: true
+    field_initializer_not_assignable: true
+    file_names: true
+    invalid_assignment: true
+    library_names: true
+    no_duplicate_case_values: true
+    prefer_relative_imports: true
+    prefer_single_quotes: true
+    sort_pub_dependencies: false
+    prefer_if_elements_to_conditional_expressions: false
+    avoid_classes_with_only_static_members: false
 
-# Additional information about this file can be found at
-# https://dart.dev/guides/language/analysis-options
+dart_code_metrics:
+  anti-patterns:
+    - long-parameter-list:
+        severity: style
+        exclude: 
+          - test/**
+  metrics: 
+    - cyclomatic-complexity: 20
+    - halstead-volume: 150
+    - lines-of-code: 100
+    - maintainability-index: 50
+    - maximum-nesting-level: 4
+    - number-of-methods: 10
+    - number-of-parameters: 4
+    - source-lines-of-code: 50
+    - technical-debt:
+      threshold: 1
+      todo-cost: 160
+      ignore-cost: 160
+      ignore-for-file-cost: 160
+      as-dynamic-cost: 40
+      deprecated-annotations-cost: 80
+      file-nullsafety-migration-cost: 160
+      unit-type: "BRL"
+    - weight-of-class: 0.33
+
+  rules: 
+    - avoid-cascade-after-if-null
+    - avoid-unnecessary-conditionals
+    - avoid-unnecessary-type-assertions
+    - avoid-unrelated-type-assertions
+    - avoid-unused-parameters
+    - binary-expression-operand-order
+    - double-literal-format
+    - newline-before-return
+    - no-boolean-literal-compare
+    # - no-empty-block
+    - no-equal-then-else
+    - prefer-commenting-analyzer-ignores
+    - prefer-correct-test-file-name 
+    - prefer-enums-by-name
+    - prefer-first
+    - prefer-immediate-return
+    - prefer-last
+    - always-remove-listener
+    - avoid-shrink-wrap-in-lists
+    - avoid-unnecessary-setstate
+    - use-setstate-synchronously # 5.4.0 required
+    - prefer-correct-edge-insets-constructor
+    - avoid-expanded-as-spacer
+    - prefer-using-list-view # 5.2.0 required
+    - format-comment:
+        only-doc-comments: true
+        ignored-patterns:
+          - ^ cSpell.* 
+    - avoid-late-keyword:
+      exclude: 
+          - test/**
+    - avoid-nested-conditional-expressions:
+      acceptable-level: 2
+    - avoid-top-level-members-in-tests:
+      exclude: 
+          - lib/**
+          - bin/**
+    - member-ordering:
+        order:
+          - constructors
+          - private-fields
+          - public-fields
+          - close-method
+          - dispose-method
+        widgets-order:
+          - constructor
+          - init-state-method
+          - did-change-dependencies-method
+          - did-update-widget-method
+          - build-method
+          - dispose-method
+    - ban-name:
+        entries:
+        - ident: DateTime.now
+          description: Please use a Clock.now instead
+    # - no-magic-number:
+    #     allowed: [0, 1000, 1, 2]
+    #     allow-only-once: true
+    - prefer-correct-identifier-length:
+        exceptions: []
+        max-identifier-length: 30
+        min-identifier-length: 3
+    - prefer-correct-type-name:
+        excluded: []
+        min-length: 3
+        max-length: 40
+    - prefer-match-file-name:
+        exclude:
+          - test/**
+    - prefer-static-class:
+        # ignore-annotations:
+        #   - allowedAnnotation
+        ignore-private: true
+        ignore-names:
+          - (.*)Provider
+          - use(.*)
+    - prefer-trailing-comma:
+        break-on: 3
+    - avoid-returning-widgets:
+        ignored-names:
+          - testFunction
+        # ignored-annotations:
+        #   - allowedAnnotation
+    - prefer-single-widget-per-file:
+        ignore-private-widgets: true
+        
