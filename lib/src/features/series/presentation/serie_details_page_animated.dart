@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../../design_system/theme/ds_spacing.dart';
 import '../../../global/app_strings.dart';
+import '../../../global/constants/constants.dart';
 import '../../../global/presentation/global_presentation_constants.dart';
 import '../../../global/presentation/loading_with_message.dart';
 import '../../../global/presentation/message_and_retry.dart';
@@ -67,8 +68,11 @@ class _SerieDetailsPageAnimatedState extends State<SerieDetailsPageAnimated> {
             Stack(
               children: [
                 Hero(
-                  tag: widget.serie.imageUrl!,
-                  child: PosterImage(imageUrl: widget.serie.imageUrl!),
+                  tag: widget.serie.imageUrl ?? Constants.placeholderImage,
+                  child: PosterImage(
+                    imageUrl:
+                        widget.serie.imageUrl ?? Constants.placeholderImage,
+                  ),
                 ),
                 Positioned(
                   top: 0,

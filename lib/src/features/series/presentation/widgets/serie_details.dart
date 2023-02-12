@@ -4,6 +4,7 @@ import 'package:flutter_html/flutter_html.dart';
 import '../../../../../design_system/atoms/box_spacer/ds_box_spacer.dart';
 import '../../../../../design_system/theme/ds_spacing.dart';
 import '../../domain/serie.dart';
+import 'seasons_and_episodes.dart';
 
 class SerieDetails extends StatelessWidget {
   const SerieDetails({super.key, required this.serie});
@@ -104,15 +105,7 @@ class SerieDetails extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyText1,
           ),
         ),
-        ...List.generate(
-          serie.episodes.seasonsAndEpisodes.length,
-          (index) => ExpansionTile(
-            title: Text('Season ${index + 1}'),
-            subtitle: Text(
-              '${serie.episodes.seasonsAndEpisodes[index + 1]!.length.toString()} episodes',
-            ),
-          ),
-        ),
+        SeasonsAndEpisodes(episodes: serie.episodes),
       ],
     );
   }

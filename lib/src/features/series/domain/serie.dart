@@ -24,7 +24,9 @@ class Serie implements ShortSerie {
     return Serie(
       uid: map['id'] as int,
       name: map['name'] as String,
-      imageUrl: map['image']['original'] as String,
+      imageUrl: map['image']?['original'] != null
+          ? map['image']['original'] as String
+          : null,
       language: map['language'] != null ? map['language'] as String : null,
       averageRating: map['rating']['average'] != null
           ? num.tryParse(map['rating']['average'].toString())!.toDouble()
@@ -53,7 +55,7 @@ class Serie implements ShortSerie {
   @override
   final String name;
   @override
-  final String imageUrl;
+  final String? imageUrl;
   @override
   final String? language;
   @override

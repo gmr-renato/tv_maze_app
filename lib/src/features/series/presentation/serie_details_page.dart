@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../design_system/theme/ds_spacing.dart';
 import '../../../global/app_strings.dart';
+import '../../../global/constants/constants.dart';
 import '../../../global/presentation/loading_with_message.dart';
 import '../../../global/presentation/message_and_retry.dart';
 import '../application/serie_details_controller.dart';
@@ -26,7 +27,8 @@ class SerieDetailsPage extends StatelessWidget {
                 Stack(
                   children: [
                     PosterImage(
-                      imageUrl: controller.loadedSerie.value!.imageUrl,
+                      imageUrl: controller.loadedSerie.value!.imageUrl ??
+                          Constants.placeholderImage,
                     ),
                     const Positioned(
                       top: 0,
