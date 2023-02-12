@@ -5,7 +5,7 @@ import '../../../../../design_system/theme/ds_properties.dart';
 import '../../../../../design_system/theme/ds_sizes.dart';
 import '../../../../../design_system/theme/ds_spacing.dart';
 import '../../../../global/constants/constants.dart';
-import '../../domain/short_episode.dart';
+import '../../domain/episode.dart';
 import 'poster_image.dart';
 
 class EpisodeListTile extends StatelessWidget {
@@ -14,7 +14,7 @@ class EpisodeListTile extends StatelessWidget {
     required this.episode,
   });
 
-  final ShortEpisode episode;
+  final Episode episode;
 
   @override
   Widget build(BuildContext context) {

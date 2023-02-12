@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 
 import '../../../global/app_strings.dart';
 import '../../../global/domain/x_failure.dart';
-import '../domain/episode.dart';
 import '../domain/i_series_repository.dart';
 import '../domain/serie.dart';
 import '../domain/short_serie.dart';
@@ -19,7 +18,6 @@ class SerieDetailsController extends GetxController with StateMixin {
   final ISeriesRepository seriesRepository;
 
   final loadedSerie = Rxn<Serie>();
-  final episode = Rxn<Episode>();
 
   @override
   void onReady() {
