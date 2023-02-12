@@ -5,17 +5,17 @@ website
 
 ## APP FEATURES
 
-- List all series using paging scheme
-- Search series by name
-  - Show name and poster image
+- ~~List all series using paging scheme~~
+- ~~Search series by name~~
+  - ~~Show name and poster image~~
 
 - Series details page:
-  - Name
-  - Poster
-  - Days and time during which the series airs
-  - Genres
-  - Summary
-  - Lis of episodes separed by season
+  - ~~Name~~
+  - ~~Poster~~
+  - ~~Days and time during which the series airs~~ (UI can be improved)
+  - ~~Genres~~ (UI can be improved)
+  - ~~Summary~~
+  - ~~Lis of episodes separed by season~~
 
 - Episode details page:
   - Name
@@ -62,8 +62,20 @@ website
 
 - Generate the application
 - Put it on distribution folder
-- Share the repository linl
+- Share the repository link
 - Indicate bonus tasks completed
 - Create README.md with instructions to run and debug the code
 
+# NEXT STEPS
 
+## ARCHITECTURE IMPROVEMENTS
+
+- Change navigation: from GetX to GoRoute
+- Use Injectable and GetIt to control dependencies and allow mock on repositories and services
+- Use BLoC as robust state manager (working features)
+
+## UX IMPROVEMENTS
+
+- Improve dark theme and light theme by setting up all theme data parameters
+- Add BottomNavigationBar to allow see all series, favorites series and profile
+- Improve transition animation between pages
