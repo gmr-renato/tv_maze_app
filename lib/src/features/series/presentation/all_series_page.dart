@@ -72,7 +72,7 @@ class AllSeriespage extends StatelessWidget {
                   ),
                 ),
               ),
-              // TODO: improve list (center selected element and allow to go to first)
+              // FIXME[UII]: make list dynamically (center selected element and allow to go to first)
               Column(
                 children: [
                   const Divider(

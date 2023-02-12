@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 
 import '../../../../../design_system/atoms/box_spacer/ds_box_spacer.dart';
 import '../../../../../design_system/theme/ds_properties.dart';
@@ -6,6 +7,7 @@ import '../../../../../design_system/theme/ds_sizes.dart';
 import '../../../../../design_system/theme/ds_spacing.dart';
 import '../../../../global/constants/constants.dart';
 import '../../domain/episode.dart';
+import '../episode_details_page_animated.dart';
 import 'poster_image.dart';
 
 class EpisodeListTile extends StatelessWidget {
@@ -20,7 +22,16 @@ class EpisodeListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: InkWell(
-        onTap: () {},
+        onTap: () => Navigator.push(
+          context,
+          PageTransition(
+            child: EpisodeDetailsPageAnimated(
+              episode: episode,
+            ),
+            type: PageTransitionType.size,
+            alignment: Alignment.bottomCenter,
+          ),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(DSSpacing.medium),
           child: Row(
