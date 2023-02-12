@@ -3,6 +3,16 @@
 Application for listing TV series, using the API provided by the TVMaze
 website
 
+# TO DEBUG
+
+- Install fvm: https://fvm.app/docs/getting_started/installation/
+
+- run `fvm use 3.3.10` to install flutter
+- run `fvm flutter pub get` to download dependencies
+- restart vscode at repository
+- run `fvm flutter run --debug` to debug the code
+- or go to run & debug in vscode and select debug mode.
+
 ## APP FEATURES
 
 - ~~List all series using paging scheme~~
