@@ -9,7 +9,7 @@ website
 - ~~Search series by name~~
   - ~~Show name and poster image~~
 
-- Series details page:
+- ~~Series details page:~~
   - ~~Name~~
   - ~~Poster~~
   - ~~Days and time during which the series airs~~ (UI can be improved)
@@ -17,19 +17,19 @@ website
   - ~~Summary~~
   - ~~Lis of episodes separed by season~~
 
-- Episode details page:
-  - Name
-  - Number
-  - Season
-  - Summary
-  - Image (can be null)
+- ~~Episode details page:~~(UI can be improved)
+  - ~~Name~~
+  - ~~Number~~
+  - ~~Season~~
+  - ~~Summary~~
+  - ~~Image (can be null)~~
 
 - Pin number to secure application
 - Fingerprint, faceID or touchID
-- Save series as favorites list
-- Delete a series from the favorites
+- Save series as favorites list (started, not working)
+- Delete a series from the favorites (started, not working)
 - Browse their favorites series in alphabetical order
-- Search their favorites series by name
+- Search their favorites series by name (started, not working)
 - People search by listing name and image of the person
 
 - Person page:

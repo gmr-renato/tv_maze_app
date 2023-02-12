@@ -37,10 +37,21 @@ class PosterNameAndFavoriteBar extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            // TODO:
             ElevatedButton.icon(
-              // TODO: Method to add show to favorite
-              onPressed: addToFavoritesAction,
+              onPressed: () => showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  // TODO: implement add to favorites
+
+                  content: const Text('This feature is under construction'),
+                  actions: [
+                    ElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      child: const Text('Close'),
+                    ),
+                  ],
+                ),
+              ),
               icon: Icon(
                 iconFilled != null && iconFilled!
                     ? Icons.favorite_rounded

@@ -4,6 +4,7 @@ import 'package:flutter/scheduler.dart';
 import '../../../global/constants/constants.dart';
 import '../../../global/presentation/global_presentation_constants.dart';
 import '../domain/episode.dart';
+import 'widgets/episode_details.dart';
 import 'widgets/episode_poster_name_bar.dart';
 import 'widgets/poster_gradient_bar.dart';
 import 'widgets/poster_image.dart';
@@ -83,6 +84,7 @@ class _EpisodeDetailsPageAnimatedState
                 ),
               ],
             ),
+            EpisodeDetails(episode: widget.episode),
           ],
         ),
       ),
