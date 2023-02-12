@@ -11,17 +11,21 @@ class Episode {
     this.number,
     this.imageUrl,
     this.season,
+    this.summary,
+    this.airdate,
   });
 
   factory Episode.fromJson(Map<String, dynamic> map) {
     return Episode(
       uid: map['id'] as int,
       name: map['name'] as String,
+      number: map['number'] as int,
       imageUrl: map['image']?['original'] != null
           ? map['image']['original'] as String
           : null,
-      number: map['number'] as int,
       season: map['season'] as int,
+      summary: map['summary'] as String,
+      airdate: map['airdate'] as String,
     );
   }
   final int uid;
@@ -29,4 +33,8 @@ class Episode {
   final int? number;
   final String? imageUrl;
   final int? season;
+  final String? summary;
+
+  // TODO[IMPROVE_ARCH]: change data type to DateTime
+  final String? airdate;
 }

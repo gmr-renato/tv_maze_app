@@ -51,6 +51,21 @@ class EpisodeListTile extends StatelessWidget {
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
+                    const DSBoxSpacer(),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.calendar_today_rounded,
+                          size: DSSizes.iconSizeSmall,
+                        ),
+                        const DSBoxSpacer.small(),
+                        Text(
+                          episode.airdate!,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),

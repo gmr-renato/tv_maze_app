@@ -1,4 +1,6 @@
 class DSSizes {
+  static const double iconSizeXSmall = 12;
+  static const double iconSizeSmall = 18;
   static const double iconSizeMedium = 24;
   static const double iconSizeLarge = 36;
   static const double iconSizeXLarge = 48;

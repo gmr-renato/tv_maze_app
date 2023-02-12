@@ -19,6 +19,12 @@ class SeasonsAndEpisodes extends StatelessWidget {
         // TODO[IMPROVE_UX]: sticky header for season tiles:
         // https://pub.dev/packages/sticky_headers
         (seasonIndex) => ExpansionTile(
+          backgroundColor: Theme.of(context).primaryColorDark,
+          collapsedBackgroundColor: Theme.of(context).primaryColorDark,
+          textColor: Theme.of(context).colorScheme.onPrimary,
+          collapsedTextColor: Theme.of(context).colorScheme.onPrimary,
+          iconColor: Theme.of(context).colorScheme.onPrimary,
+          collapsedIconColor: Theme.of(context).colorScheme.onPrimary,
           title: Text('Season ${seasonIndex + 1}'),
           subtitle: Text(
             '${episodes.seasonsAndEpisodes[seasonIndex + 1]!.length.toString()} episodes',
