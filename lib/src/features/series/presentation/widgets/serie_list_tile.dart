@@ -9,8 +9,8 @@ import '../../domain/short_serie.dart';
 import '../serie_details_page_animated.dart';
 import 'poster_image.dart';
 
-class SerieMainInfo extends StatelessWidget {
-  const SerieMainInfo({
+class SerieListTile extends StatelessWidget {
+  const SerieListTile({
     super.key,
     required this.serie,
   });
@@ -21,7 +21,7 @@ class SerieMainInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: InkWell(
-        // HACK: navigate using here (cool for)
+        // HACK: navigate using hero (cool for) UX
         onTap: () => Navigator.push(
           context,
           PageTransition(

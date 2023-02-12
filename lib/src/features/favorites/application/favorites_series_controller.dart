@@ -77,9 +77,9 @@ class FavoritesSeriesController extends GetxController with StateMixin {
   Future<void> searchFavorites(String query) async {
     change(null, status: RxStatus.loading());
 
-    for (int i = 0; i < favoritesSeries.value.length; i++) {
-      if (favoritesSeries.value[i].name!.toLowerCase().contains(query)) {
-        favoritesResults.value.add(favoritesSeries.value[i]);
+    for (int index = 0; index < favoritesSeries.value.length; index++) {
+      if (favoritesSeries.value[index].name!.toLowerCase().contains(query)) {
+        favoritesResults.value.add(favoritesSeries.value[index]);
       }
     }
 

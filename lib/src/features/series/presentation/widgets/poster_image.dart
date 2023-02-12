@@ -26,7 +26,7 @@ class PosterImage extends StatelessWidget {
         color: Theme.of(context).colorScheme.secondaryContainer,
         child: const Padding(
           padding: EdgeInsets.all(DSSpacing.medium),
-          child: CircularProgressIndicator.adaptive(),
+          child: Center(child: CircularProgressIndicator.adaptive()),
         ),
       ),
     );

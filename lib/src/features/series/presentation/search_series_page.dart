@@ -37,7 +37,7 @@ class SearchSeriespage extends StatelessWidget {
               () => controller.search(value),
             ),
             decoration: const InputDecoration(
-              hintText: 'Search some series',
+              hintText: 'Search serie by name',
               border: InputBorder.none,
             ),
           ),

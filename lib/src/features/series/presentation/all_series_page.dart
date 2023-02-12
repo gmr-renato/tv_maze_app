@@ -18,7 +18,7 @@ class AllSeriespage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () => Get.toNamed(AppRoutes.favoritesSeries),
+          onPressed: () => Get.toNamed(AppRoutes.favoriteSeries),
           icon: const Icon(Icons.favorite_border_rounded),
         ),
         title: const Text('All Series'),

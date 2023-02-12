@@ -50,8 +50,8 @@ class FavoritesSeriesService extends ChangeNotifier
           return right(newFavoritesList);
         },
         (r) {
-          for (int i = 0; i < r.length; i++) {
-            if (r[i].uid != serie.uid) {
+          for (int index = 0; index < r.length; index++) {
+            if (r[index].uid != serie.uid) {
               newFavoritesList.add(serie.toMap(serie));
               notifyListeners();
               _saveFavorites(newFavoritesList);
@@ -77,7 +77,6 @@ class FavoritesSeriesService extends ChangeNotifier
       currentFavoritesSeries.fold(
         (l) => left(const XFailure.serverError()),
         (r) {
-          print('antes ${r.length}');
           for (final favorite in r) {
             if (favorite != serie) {
               newFavoritesList.add(favorite.toMap(favorite));
@@ -85,7 +84,6 @@ class FavoritesSeriesService extends ChangeNotifier
           }
           _saveFavorites(newFavoritesList);
           notifyListeners();
-          print('depois ${r.length}');
 
           return right(newFavoritesList);
         },
@@ -99,6 +97,6 @@ class FavoritesSeriesService extends ChangeNotifier
 
   Future<void> _saveFavorites(List<Map<String, dynamic>> newList) async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setStringList('favorites', json.encode(newList));
+    prefs.setString('favorites', json.encode(newList));
   }
 }

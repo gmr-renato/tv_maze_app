@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../design_system/atoms/box_spacer/ds_box_spacer.dart';
 import '../../domain/short_serie.dart';
-import 'serie_main_info.dart';
+import 'serie_list_tile.dart';
 
 class AllSeriesList extends StatelessWidget {
   const AllSeriesList({
@@ -19,7 +19,7 @@ class AllSeriesList extends StatelessWidget {
       child: ListView.separated(
         cacheExtent: 30,
         itemCount: series.length,
-        itemBuilder: (context, index) => SerieMainInfo(serie: series[index]),
+        itemBuilder: (context, index) => SerieListTile(serie: series[index]),
         separatorBuilder: (context, index) {
           return const DSBoxSpacer.xxSmall();
         },

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../../../global/app_strings.dart';
 import '../../../global/domain/x_failure.dart';
 import '../domain/episode.dart';
 import '../domain/i_series_repository.dart';
@@ -27,11 +28,12 @@ class SerieDetailsController extends GetxController with StateMixin {
     _serieUid = int.tryParse(Get.parameters['uid'] ?? '');
 
     if (serie != null) {
+      _serieUid = serie!.uid;
       _getSerie(serie!.uid);
     } else if (_serieUid != null) {
       _getSerie(_serieUid!);
     } else {
-      change(null, status: RxStatus.error('Could not get serie uid'));
+      change(null, status: RxStatus.error(AppStrings.couldNotGetSerieUid));
     }
   }
 
@@ -54,6 +56,8 @@ class SerieDetailsController extends GetxController with StateMixin {
       },
     );
   }
+
+  Future<void> retryGetSerie() async => _getSerie(_serieUid!);
 
   // Future<void> getEpisode(int episodeUid) async {
   //   fetchStatus.value = RxStatus.loading();

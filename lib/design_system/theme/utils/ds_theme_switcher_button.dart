@@ -21,6 +21,7 @@ class DSThemeSwitcherButton extends StatelessWidget {
         onPressed: () => themeNotifier.isDark
             ? themeNotifier.isDark = false
             : themeNotifier.isDark = true,
+        tooltip: 'Tap to switch theme in real time',
       ),
     );
   }

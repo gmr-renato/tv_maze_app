@@ -28,7 +28,7 @@ class AppPages {
       binding: SearchByNameBinding(),
     ),
     GetPage(
-      name: AppRoutes.favoritesSeries,
+      name: AppRoutes.favoriteSeries,
       page: () => FavoritesSeriesPage(),
       binding: FavoritesSeriesBinding(),
     ),

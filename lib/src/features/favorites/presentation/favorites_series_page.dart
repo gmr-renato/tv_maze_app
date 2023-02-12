@@ -18,7 +18,7 @@ class _FavoritesPageState extends State<FavoritesSeriesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('All Favorites'),
+        title: const Text('Your favorites'),
         actions: const [
           DSThemeSwitcherButton(),
         ],
