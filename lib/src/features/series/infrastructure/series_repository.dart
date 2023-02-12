@@ -3,11 +3,11 @@ import 'package:dio/dio.dart';
 
 import '../../../global/constants/constants.dart';
 import '../../../global/domain/x_failure.dart';
-import '../domain/episode.dart';
 import '../domain/i_series_repository.dart';
 import '../domain/serie.dart';
-import '../domain/short_episode.dart';
-import '../domain/short_serie.dart';
+import '../domain/short_episode_list.dart';
+import '../domain/short_search_series_list.dart';
+import '../domain/short_series_list.dart';
 
 class SeriesRepository implements ISeriesRepository {
   final Dio dio = Dio();
@@ -72,20 +72,20 @@ class SeriesRepository implements ISeriesRepository {
 
         return episodesResponse.fold(
           (l) {
-            final shortEpisodesList = <ShortEpisode>[];
+            // return right(
+            //   Serie.fromJson(
+            //     response.data! as Map<String, dynamic>,
+            //     shortEpisodesList,
+            //   ),
+            // );
 
-            return right(
-              Serie.fromJson(
-                response.data! as Map<String, dynamic>,
-                shortEpisodesList,
-              ),
-            );
+            return left(const XFailure.unexpected());
           },
           (r) {
             return right(
               Serie.fromJson(
                 response.data! as Map<String, dynamic>,
-                r.episodesList,
+                r,
               ),
             );
           },
@@ -116,23 +116,6 @@ class SeriesRepository implements ISeriesRepository {
       }
 
       return right(shortEpsodesList);
-    } catch (e) {
-      return left(const XFailure.serverError());
-    }
-  }
-
-  @override
-  Future<Either<XFailure, Episode>> fetchEpisodeDetails(int uid) async {
-    try {
-      final Response<Map<String, dynamic>> episodesResponse = await dio.get(
-        '${Constants.baseApiUrl}${Constants.episodesEndPoint}$uid',
-      );
-
-      if (episodesResponse.data != null) {
-        return right(Episode.fromJson(episodesResponse.data!));
-      } else {
-        return left(const XFailure.unexpected());
-      }
     } catch (e) {
       return left(const XFailure.serverError());
     }

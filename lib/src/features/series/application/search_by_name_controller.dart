@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 import '../domain/i_series_repository.dart';
-import '../domain/short_serie.dart';
+import '../domain/short_search_series_list.dart';
 
 class SearchByNameController extends GetxController with StateMixin {
   SearchByNameController(this.seriesRepository);

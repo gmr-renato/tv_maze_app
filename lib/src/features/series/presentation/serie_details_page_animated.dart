@@ -104,11 +104,8 @@ class _SerieDetailsPageAnimatedState extends State<SerieDetailsPageAnimated> {
             GetBuilder<SerieDetailsController>(
               builder: (controller) {
                 return controller.obx(
-                  (state) => Padding(
-                    padding: const EdgeInsets.all(DSSpacing.medium),
-                    child: SerieDetails(
-                      serie: controller.loadedSerie.value!,
-                    ),
+                  (state) => SerieDetails(
+                    serie: controller.loadedSerie.value!,
                   ),
                   onError: (error) => Scaffold(
                     body: Padding(

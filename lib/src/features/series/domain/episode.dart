@@ -1,5 +1,3 @@
-import 'package:html/parser.dart';
-
 import 'short_episode.dart';
 
 // Attention: This entity was purposely created as anemic, without the implementation of validations
@@ -12,36 +10,10 @@ class Episode implements ShortEpisode {
     this.name,
     this.number,
     this.season,
+    this.imageUrl,
     this.summary,
-    this.image,
   });
 
-  factory Episode.fromJson(Map<String, dynamic> json) {
-    String returnNameValue(Map<String, dynamic> json) {
-      if (json.containsKey('show')) {
-        final name = (json['show'] as Map<String, dynamic>)['name'];
-
-        return name.toString();
-      } else {
-        return json['name'].toString();
-      }
-    }
-
-    String parseHtmlString(String htmlString) {
-      final document = parse(htmlString);
-
-      return parse(document.body!.text).documentElement!.text;
-    }
-
-    return Episode(
-      uid: json['id'] as int,
-      name: returnNameValue(json),
-      number: json['number'] as int,
-      season: json['season'] as int,
-      summary: parseHtmlString(json['summary'].toString()),
-      image: (json['image'] as Map<String, dynamic>)['medium'].toString(),
-    );
-  }
   @override
   final int uid;
   @override
@@ -49,7 +21,8 @@ class Episode implements ShortEpisode {
   @override
   final int? number;
   @override
+  final String? imageUrl;
+  @override
   final int? season;
   final String? summary;
-  final String? image;
 }

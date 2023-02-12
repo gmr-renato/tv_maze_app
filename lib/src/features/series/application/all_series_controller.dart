@@ -2,7 +2,7 @@ import 'package:get/state_manager.dart';
 
 import '../../../global/domain/x_failure.dart';
 import '../domain/i_series_repository.dart';
-import '../domain/short_serie.dart';
+import '../domain/short_series_list.dart';
 
 class AllSeriesController extends GetxController with StateMixin {
   AllSeriesController(this.seriesRepository);

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 import '../../../../../design_system/atoms/box_spacer/ds_box_spacer.dart';
+import '../../../../../design_system/theme/ds_spacing.dart';
 import '../../domain/serie.dart';
 
 class SerieDetails extends StatelessWidget {
@@ -15,73 +16,102 @@ class SerieDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          'The plot:',
-          style: Theme.of(context).textTheme.headline6!.copyWith(
-                fontWeight: FontWeight.w700,
+        Padding(
+          padding: const EdgeInsets.all(DSSpacing.medium),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'The plot'.toUpperCase(),
+                style: Theme.of(context).textTheme.headline6!.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
               ),
+              Html(
+                data: serie.summary,
+              ),
+              Row(
+                children: [
+                  Text(
+                    'Language: ',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  Text(
+                    serie.language ?? 'Not found',
+                  ),
+                ],
+              ),
+              const DSBoxSpacer(),
+              Row(
+                children: [
+                  Text(
+                    'Rating: ',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  Text(
+                    serie.averageRating?.toString() ?? 'No rating',
+                  ),
+                ],
+              ),
+              const DSBoxSpacer(),
+              Row(
+                children: [
+                  Text(
+                    'Rating: ',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  Text(
+                    serie.genres.toString(),
+                  ),
+                ],
+              ),
+              const DSBoxSpacer(),
+              Row(
+                children: [
+                  Text(
+                    'Schedule days: ',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  Text(
+                    serie.scheduleDays.toString(),
+                  ),
+                ],
+              ),
+              const DSBoxSpacer(),
+              Row(
+                children: [
+                  Text(
+                    'Schedule time: ',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  Text(
+                    serie.scheduleTime,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
-        Html(
-          data: serie.summary,
+        const Divider(
+          indent: DSSpacing.medium,
+          endIndent: DSSpacing.medium,
         ),
-        Row(
-          children: [
-            Text(
-              'Language: ',
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
-            Text(
-              serie.language ?? 'Not found',
-            ),
-          ],
+        Padding(
+          padding: const EdgeInsets.all(DSSpacing.medium),
+          child: Text(
+            'Seasons and episodes'.toUpperCase(),
+            style: Theme.of(context).textTheme.bodyText1,
+          ),
         ),
-        const DSBoxSpacer(),
-        Row(
-          children: [
-            Text(
-              'Rating: ',
-              style: Theme.of(context).textTheme.bodyText1,
+        ...List.generate(
+          serie.episodes.seasonsAndEpisodes.length,
+          (index) => ExpansionTile(
+            title: Text('Season ${index + 1}'),
+            subtitle: Text(
+              '${serie.episodes.seasonsAndEpisodes[index + 1]!.length.toString()} episodes',
             ),
-            Text(
-              serie.averageRating?.toString() ?? 'No rating',
-            ),
-          ],
-        ),
-        const DSBoxSpacer(),
-        Row(
-          children: [
-            Text(
-              'Rating: ',
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
-            Text(
-              serie.genres.toString(),
-            ),
-          ],
-        ),
-        const DSBoxSpacer(),
-        Row(
-          children: [
-            Text(
-              'Schedule days: ',
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
-            Text(
-              serie.scheduleDays.toString(),
-            ),
-          ],
-        ),
-        const DSBoxSpacer(),
-        Row(
-          children: [
-            Text(
-              'Schedule time: ',
-              style: Theme.of(context).textTheme.bodyText1,
-            ),
-            Text(
-              serie.scheduleTime,
-            ),
-          ],
+          ),
         ),
       ],
     );

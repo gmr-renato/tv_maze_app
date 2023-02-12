@@ -1,6 +1,6 @@
 // ignore_for_file: avoid_dynamic_calls
 
-import 'short_episode.dart';
+import 'short_episode_list.dart';
 import 'short_serie.dart';
 
 class Serie implements ShortSerie {
@@ -14,12 +14,12 @@ class Serie implements ShortSerie {
     required this.scheduleTime,
     required this.genres,
     required this.summary,
-    required this.shortEpisodeList,
+    required this.episodes,
   });
 
   factory Serie.fromJson(
     Map<String, dynamic> map,
-    List<ShortEpisode> shortEpisodeList,
+    ShortEpisodeList episodes,
   ) {
     return Serie(
       uid: map['id'] as int,
@@ -33,7 +33,7 @@ class Serie implements ShortSerie {
       scheduleTime: map['schedule']['time'] as String,
       genres: map['genres'] as List<dynamic>,
       summary: map['summary'] as String,
-      shortEpisodeList: shortEpisodeList,
+      episodes: episodes,
     );
   }
 
@@ -62,5 +62,5 @@ class Serie implements ShortSerie {
   final String scheduleTime;
   final List<dynamic> genres;
   final String summary;
-  final List<ShortEpisode> shortEpisodeList;
+  final ShortEpisodeList episodes;
 }

@@ -45,11 +45,8 @@ class SerieDetailsPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(DSSpacing.medium),
-                  child: SerieDetails(
-                    serie: controller.loadedSerie.value!,
-                  ),
+                SerieDetails(
+                  serie: controller.loadedSerie.value!,
                 ),
               ],
             ),
